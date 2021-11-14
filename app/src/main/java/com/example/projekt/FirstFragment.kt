@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import androidx.navigation.fragment.findNavController
 import com.example.projekt.databinding.FragmentFirstBinding
 import kotlinx.android.synthetic.main.fragment_first.*
@@ -35,7 +34,7 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var viewModel = ViewModelProvider(requireActivity()).get(FirstFragmentViewModel::class.java)
+        var viewModel = ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
 
         Log.d("NAME", viewModel.name)
         Log.d("KALORIA", viewModel.kaloria.toString())
