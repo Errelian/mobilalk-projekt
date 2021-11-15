@@ -24,6 +24,7 @@ class SecondFragment : Fragment() {
 
     private lateinit var viewModel: MainActivityViewModel
 
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -43,6 +44,7 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
 
+
         binding.checkup.setOnClickListener{
             val name = args.nev
             val kaloria = args.kaloria
@@ -57,8 +59,6 @@ class SecondFragment : Fragment() {
 
             //Log.d("Current kaloria count DOUBLE", viewModel.kaloriaBurned().value.toString())
             //Log.d("Current kaloria count", viewModel.currentKaloriaString.value.toString())
-
-            currentKal.setText(viewModel.currentKaloriaString.value.toString() + " Kcal")
         }
 
         binding.buttonSecond.setOnClickListener {
@@ -75,7 +75,7 @@ class SecondFragment : Fragment() {
             Log.d(viewModel.kaloriaChange().value.toString(), "Before change")
             viewModel.changeKaloria()
             Log.d(viewModel.kaloriaChange().value.toString(), "Afer change")
-            //TODO MAKE THIS ONE CHANGE A LIVEDATA THING, MAKE THAT LIVEDATE OBSERVED -> TRIGGER COROUTINE TO WRITE TO DB
+            //TODO TRIGGER COROUTINE TO WRITE TO DB
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
 
@@ -87,9 +87,12 @@ class SecondFragment : Fragment() {
 
         viewModel.currentKaloriaString.observe(viewLifecycleOwner, Observer{
             Log.d("kaloriaburnedstringchanged", "asd")
+            currentKal.setText(viewModel.currentKaloriaString.value.toString() + " Kcal")
+
         })
         Log.d("After Observer", "asd")
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

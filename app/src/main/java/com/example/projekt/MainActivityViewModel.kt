@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.example.projekt.database.KaloriaDatabaseDao
 
 class MainActivityViewModel : ViewModel() {
 
@@ -14,6 +15,12 @@ class MainActivityViewModel : ViewModel() {
     private var _kaloriaBurned = MutableLiveData<Double>(0.1)
     private var _kaloriaChange = MutableLiveData<Boolean>(false)
     var kaloriaBurnedString =  MutableLiveData<String>("0")
+    lateinit var dataSource: KaloriaDatabaseDao
+
+
+    fun setDatasource(newDatasource: KaloriaDatabaseDao){
+        this.dataSource = newDatasource
+    }
 
     fun kaloriaChange(): LiveData<Boolean>{
         return _kaloriaChange
