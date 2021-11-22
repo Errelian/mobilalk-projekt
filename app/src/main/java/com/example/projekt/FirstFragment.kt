@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.projekt.databinding.FragmentFirstBinding
 import kotlinx.android.synthetic.main.fragment_first.*
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.projekt.database.KaloriaDatabase
@@ -80,11 +81,15 @@ class FirstFragment : Fragment() {
                 viewModel.dataSource.insert(session)
             }
 
+            var databaseValue: String = "asd"
             Thread.sleep(300)
             uiScope.launch(Dispatchers.IO) {
-                Log.d( "Database value: ", (viewModel.dataSource.get(session.sessionId)).toString() )
+                databaseValue = viewModel.dataSource.get(session.sessionId).toString()
+                Log.d( "Database value: ", databaseValue )
             }
+            Thread.sleep(300)
 
+            Toast.makeText(context,databaseValue,Toast.LENGTH_LONG).show()
             Log.d("NAME", viewModel.name)
             Log.d("KALORIA", viewModel.kaloria.toString())
         }

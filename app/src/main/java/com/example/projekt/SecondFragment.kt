@@ -90,6 +90,7 @@ class SecondFragment : Fragment() {
             currentKal.setText(viewModel.currentKaloriaString.value.toString() + " Kcal")
 
         })
+
         Log.d("After Observer", "asd")
     }
 

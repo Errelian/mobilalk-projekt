@@ -17,4 +17,13 @@
     <string name="mi_a_neve">Mi a Neve?</string>
     <string name="hany_kaloriat_eget">Hany kaloriat eget.</string>
     <string name="mentes">Mentes</string>
+    <string name="update_calorie_counter">Update Calorie Counter</string>
+
+    <string-array name="meno_adat">
+        <item>Futas</item>
+        <item>Uszas</item>
+        <item>Gyorsabb futas</item>
+        <item>Ping-pong</item>
+        <item>Futball</item>
+    </string-array>
 </resources>
