@@ -72,7 +72,18 @@
         android:layout_height="wrap_content"
         android:text="@string/netes_adat"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/mero"
+        app:layout_constraintStart_toStartOf="@+id/mento"
+        app:layout_constraintTop_toBottomOf="@+id/mento" />
+
+    <Button
+        android:id="@+id/cat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/macska_t_nyek"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/net"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_first" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_first"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

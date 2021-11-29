@@ -10,14 +10,23 @@ import com.example.projekt.databinding.FragmentFirstBinding
 import kotlinx.android.synthetic.main.fragment_first.*
 import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.projekt.database.KaloriaDatabase
 import com.example.projekt.database.KaloriaSession
+import com.jayway.jsonpath.Configuration
+import com.jayway.jsonpath.JsonPath
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import okhttp3.ResponseBody
+import org.json.JSONObject
+
+
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
 
 
 /**
@@ -93,6 +102,34 @@ class FirstFragment : Fragment() {
             Log.d("NAME", viewModel.name)
             Log.d("KALORIA", viewModel.kaloria.toString())
         }
+
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl("https://catfact.ninja/")
+            .build()
+
+        val catService: CatService = retrofit.create(CatService::class.java)
+
+        binding.cat.setOnClickListener{
+
+            catService.getFact().enqueue(object : Callback<ResponseBody?> {
+                override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
+                    response.body()?.let {
+                        val json = it.string()
+                        val jsonObject = JSONObject(json);
+                        val fact = jsonObject.getString("fact")
+
+
+                        Toast.makeText(context, fact, Toast.LENGTH_LONG).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+                    Toast.makeText(context, "Cats are animals", Toast.LENGTH_LONG).show()
+                }
+            })
+
+        }
+
     }
 
     override fun onDestroyView() {
